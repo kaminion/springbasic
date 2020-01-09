@@ -1,0 +1,7 @@
+#
+#Mon Dec 23 01:31:00 KST 2019
+annotation.ioc.Bcomp=org.springframework.stereotype.Component
+annotation.ioc.AnnoMain=org.springframework.stereotype.Component
+annotation.ioc.Acomp=org.springframework.stereotype.Component
+co.test.A=org.springframework.stereotype.Component
+co.test.AppConfig=org.springframework.stereotype.Component

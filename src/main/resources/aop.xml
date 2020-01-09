@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 특정메서드 하나만 동작    -->
+    <!-- 이 포인트 컷이 동작할때  어떤 메서드 실행할 지 결정  -->
+    <aop:config>
+        <!--   AOP객체는 aBean, 여기서 aop 메서드들을 담당한다     -->
+        <aop:aspect id="myAspect" ref="aBean">
+            <aop:pointcut id="businessService" expression="execution(* co.test.aop.Service.log())"/>
+<!--            <aop:before pointcut-ref="businessService" method="beforelog"/>-->
+<!--            <aop:after pointcut-ref="businessService" method="afterlog"/>-->
+<!--            <aop:after-returning pointcut-ref="businessService" method="afterReturnLog"/>-->
+<!--            <aop:after-throwing pointcut-ref="businessService" method="afterThrowingLog"/>-->
+            <aop:around pointcut-ref="businessService" method="aroundLog"></aop:around>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="aBean" class="co.test.aop.AopBean">
+    </bean>
+
+    <bean id="service" class="co.test.aop.Service">
+    </bean>
+
+</beans>

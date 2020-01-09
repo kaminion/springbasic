@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="co.test"/>
+
+    <bean id="daoFactory" class="co.test.DaoFactory"/>
+    <bean id="dao" name="dao1" class="co.test.Dao" factory-bean="daoFactory" factory-method="createDao">
+        <constructor-arg ref="connection"/>
+    </bean>
+    <bean id="dao2" class="co.test.Dao2" factory-bean="daoFactory" factory-method="createDao2" lazy-init="true">
+        <constructor-arg ref="connection"/>
+    </bean>
+
+    <bean id="connectionfactory" class="co.test.ConnectionFactory" init-method="init">
+        <constructor-arg name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/springbasic?serverTimezone=UTC&amp;autoReconnection=true"/>
+        <constructor-arg name="id" value="root"/>
+        <constructor-arg name="password" value="1234"/>
+    </bean>
+    <bean id="connection" class="java.sql.Connection"
+          factory-bean="connectionfactory"
+          factory-method="createConnection"
+          />
+
+    <bean id="A" class="di.A">
+        <property name="b" ref="B"/>
+    </bean>
+    <bean id="B" class="di.B">
+        <constructor-arg value="true"/>
+    </bean>
+
+    <bean class="co.test.B">
+        <qualifier value="b1"/>
+    </bean>
+<!--    <bean class="co.test.B"></bean>-->
+<!--    <bean class="co.test.A" init-method="init"/>-->
+    <bean class="co.test.AppConfig"/>
+
+<!--    <bean class="co.test.BringSpringContainer" init-method="init"/>-->
+
+</beans>
