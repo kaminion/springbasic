@@ -1,5 +1,5 @@
 #
-#Thu Jan 09 22:59:47 KST 2020
+#Tue Jan 14 23:10:17 KST 2020
 co.test.service.MyService=org.springframework.stereotype.Component
 co.test.AppDefaultConfig=org.springframework.stereotype.Component
 co.test.AppDevConfig=org.springframework.stereotype.Component

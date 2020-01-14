@@ -12,22 +12,50 @@
 
     <!-- 특정메서드 하나만 동작    -->
     <!-- 이 포인트 컷이 동작할때  어떤 메서드 실행할 지 결정  -->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;   AOP객체는 aBean, 여기서 aop 메서드들을 담당한다     &ndash;&gt;-->
+<!--        <aop:aspect id="myAspect" ref="aBean">-->
+<!--            <aop:pointcut id="businessService" expression="execution(* co.test.aop.Service.log())"/>-->
+<!--&lt;!&ndash;            <aop:before pointcut-ref="businessService" method="beforelog"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after pointcut-ref="businessService" method="afterlog"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after-returning pointcut-ref="businessService" method="afterReturnLog"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after-throwing pointcut-ref="businessService" method="afterThrowingLog"/>&ndash;&gt;-->
+<!--            <aop:around pointcut-ref="businessService" method="aroundLog"></aop:around>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
     <aop:config>
-        <!--   AOP객체는 aBean, 여기서 aop 메서드들을 담당한다     -->
-        <aop:aspect id="myAspect" ref="aBean">
-            <aop:pointcut id="businessService" expression="execution(* co.test.aop.Service.log())"/>
-<!--            <aop:before pointcut-ref="businessService" method="beforelog"/>-->
-<!--            <aop:after pointcut-ref="businessService" method="afterlog"/>-->
-<!--            <aop:after-returning pointcut-ref="businessService" method="afterReturnLog"/>-->
-<!--            <aop:after-throwing pointcut-ref="businessService" method="afterThrowingLog"/>-->
-            <aop:around pointcut-ref="businessService" method="aroundLog"></aop:around>
+        <aop:aspect id="myAspect" ref="transactionBean">
+            <aop:pointcut id="transactionPoint" expression="execution(* co.test.Dao.insert(..))"/>
+            <aop:around pointcut-ref="transactionPoint" method="aroundTransaction"></aop:around>
         </aop:aspect>
     </aop:config>
+
+    <bean id="connectionfactory" class="co.test.ConnectionFactory" init-method="init">
+        <constructor-arg name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/springbasic?serverTimezone=UTC&amp;autoReconnection=true"/>
+        <constructor-arg name="id" value="root"/>
+        <constructor-arg name="password" value="1234"/>
+    </bean>
+
+    <bean id="connection" class="java.sql.Connection"
+          factory-bean="connectionfactory"
+          factory-method="createConnection"
+    />
+
+    <bean id="daoFactory" class="co.test.DaoFactory"/>
+    <bean id="dao" name="dao1" class="co.test.Dao" factory-bean="daoFactory" factory-method="createDao">
+        <constructor-arg ref="connection"/>
+    </bean>
 
     <bean id="aBean" class="co.test.aop.AopBean">
     </bean>
 
     <bean id="service" class="co.test.aop.Service">
+    </bean>
+
+    <bean id="transactionBean" class="co.test.aop.TransactionBean">
+        <constructor-arg ref="connection"></constructor-arg>
     </bean>
 
 </beans>

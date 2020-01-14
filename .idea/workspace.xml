@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c890042-72b6-4fa2-ac82-ef7e38e66187" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/test/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/test/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/test/aop/AopMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/test/aop/AopMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/aop.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/aop.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring.components" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring.components" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/aop.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aop.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +101,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.AopMain">
     <configuration name="AopMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="co.test.aop.AopMain" />
       <module name="steakCms" />
@@ -174,8 +177,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.AopMain" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Player" />
         <item itemvalue="Application.FastCampus" />
         <item itemvalue="Application.Main (1)" />
@@ -210,7 +213,9 @@
       <workItem from="1577670295849" duration="9464000" />
       <workItem from="1578313719844" duration="1780000" />
       <workItem from="1578320126293" duration="195000" />
-      <workItem from="1578571718863" duration="6441000" />
+      <workItem from="1578571718863" duration="6616000" />
+      <workItem from="1578701242863" duration="612000" />
+      <workItem from="1579007889784" duration="3457000" />
     </task>
     <servers />
   </component>
@@ -222,7 +227,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

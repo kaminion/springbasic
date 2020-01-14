@@ -16,18 +16,24 @@ public class Dao {
         this.con = con;
     }
 
-    public void run()
+    // 코드 분리작업
+
+    public void insert() throws SQLException {
+        Statement statement = con.createStatement();
+        con.setAutoCommit(false);
+        try {
+            statement.executeUpdate("INSERT INTO springbasic.member(username, password) VALUES('ahn', '1234')");
+            con.commit();
+        }catch(SQLException e){
+            con.rollback();
+        }
+    }
+
+    public void print()
     {
         // 자바 1.7부터 autoCloserable interface 상속하는것은 리소스반환 (try-with resource) multi-catch Exception도 기재할 것
         try{
             Statement statement = con.createStatement();
-            con.setAutoCommit(false);
-            try {
-                statement.executeUpdate("INSERT INTO springbasic.member(username, password) VALUES('ahn', '1234')");
-                con.commit();
-            }catch(SQLException e){
-                con.rollback();
-            }
             ResultSet rs  = statement.executeQuery("SELECT id, username, password FROM springbasic.member");
 
             while(rs.next())
